@@ -14,10 +14,6 @@ fetch('http://localhost:5002/posts')
   .then(data => console.log(data))
   .catch(error => console.error('Error:'));
 
-// {postID: 1, message: 'Hello World!'}
-// {postID: 2, message: 'Ciao!'}
-
-
 
 
 /* =============================== Phase 2 ================================ */
@@ -26,4 +22,15 @@ fetch('http://localhost:5002/posts')
   components to the console.
 */
 
-// Your code here
+fetch('http://localhost:5002/posts', {
+  method: 'POST',
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    message: "New Post!"
+  })
+})
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
