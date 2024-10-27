@@ -20,17 +20,18 @@ function getNewPostId() {
 }
 
 const server = http.createServer((req, res) => {
+  console.log(`${req.method} ${req.url}`);
+
   let reqBody = "";
   req.on("data", (data) => {
     reqBody += data;
   });
 
   req.on("end", () => {
-    // Parse the body of the request as JSON if Content-Type header is
-      // application/json
-    // Parse the body of the request as x-www-form-urlencoded if Content-Type
-      // header is x-www-form-urlencoded
-    if (reqBody) {
+
+
+    // only parse the body if it's not a GET request
+    if (req.method !== 'GET' && reqBody) {
       try {
         const contentType = req.headers['content-type'];
         if (contentType === 'application/json') {
@@ -86,6 +87,6 @@ const server = http.createServer((req, res) => {
   });
 });
 
-const port = 5000;
+const port = 5002;
 
 server.listen(port, () => console.log('Server is listening on port', port));

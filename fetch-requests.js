@@ -9,7 +9,14 @@ Paste your code for fetch requests here once you finish each task.
   components to the console.
 */
 
-// Your code here
+fetch('http://localhost:5002/posts')
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:'));
+
+// {postID: 1, message: 'Hello World!'}
+// {postID: 2, message: 'Ciao!'}
+
 
 
 
